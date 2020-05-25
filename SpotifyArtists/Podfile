@@ -1,0 +1,26 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'SpotifyArtist' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for SpotifyArtist
+  pod 'IGListKit', '~> 4.0.0'
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
+  pod 'ObjectMapper'
+  pod 'RealmSwift'
+  pod 'Kingfisher'
+
+  target 'SpotifyArtistTests' do
+    inherit! :search_paths
+    # Pods for testing
+    pod 'IGListKit', '~> 4.0.0'
+  end
+
+  target 'SpotifyArtistUITests' do
+    # Pods for testing
+  end
+
+end
