@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4hz-bP-CtP">
-                        <rect key="frame" x="6" y="4" width="48" height="46"/>
+                        <rect key="frame" x="6" y="4.5" width="48" height="46"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48.5" id="7uL-SV-VCD"/>
                             <constraint firstAttribute="width" constant="48" id="v8O-qY-zAA"/>
@@ -41,33 +41,34 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bsQ-pR-lsV">
-                        <rect key="frame" x="267" y="14.5" width="25" height="25"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rock pop" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Z4-y4-BF4">
+                        <rect key="frame" x="240" y="10" width="61" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="4JG-n5-Hmp"/>
-                            <constraint firstAttribute="width" constant="25" id="wYf-xe-6sM"/>
+                            <constraint firstAttribute="height" constant="16" id="MqH-Va-WYC"/>
                         </constraints>
-                    </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LQn-sy-qaF">
-                        <rect key="frame" x="232" y="14.5" width="25" height="25"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="25" id="fgg-fv-1K3"/>
-                            <constraint firstAttribute="width" constant="25" id="hMh-4N-4CM"/>
-                        </constraints>
-                    </imageView>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dancehall" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClH-g6-zP3">
+                        <rect key="frame" x="240" y="27.5" width="64" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="knR-f6-LNP" firstAttribute="centerY" secondItem="9Q5-Ie-lLP" secondAttribute="centerY" constant="-6" id="0ZX-c4-3J3"/>
+                <constraint firstItem="ClH-g6-zP3" firstAttribute="centerY" secondItem="9Q5-Ie-lLP" secondAttribute="centerY" constant="9" id="192-4d-y0w"/>
                 <constraint firstItem="XzX-SD-gUp" firstAttribute="leading" secondItem="knR-f6-LNP" secondAttribute="leading" id="9fE-T3-fKk"/>
-                <constraint firstItem="LQn-sy-qaF" firstAttribute="centerY" secondItem="9Q5-Ie-lLP" secondAttribute="centerY" id="BE3-dn-rnn"/>
                 <constraint firstItem="4hz-bP-CtP" firstAttribute="centerY" secondItem="9Q5-Ie-lLP" secondAttribute="centerY" id="F0t-8V-dNl"/>
-                <constraint firstItem="bsQ-pR-lsV" firstAttribute="leading" secondItem="LQn-sy-qaF" secondAttribute="trailing" constant="10" id="KIp-t8-xuV"/>
                 <constraint firstItem="XzX-SD-gUp" firstAttribute="centerY" secondItem="9Q5-Ie-lLP" secondAttribute="centerY" constant="10" id="MtF-ry-wCh"/>
+                <constraint firstAttribute="trailing" secondItem="4Z4-y4-BF4" secondAttribute="trailing" constant="10" id="P8U-Rb-8fm"/>
                 <constraint firstItem="4hz-bP-CtP" firstAttribute="leading" secondItem="9Q5-Ie-lLP" secondAttribute="leading" constant="6" id="TIK-Uw-gZ3"/>
                 <constraint firstItem="knR-f6-LNP" firstAttribute="leading" secondItem="4hz-bP-CtP" secondAttribute="trailing" constant="6" id="UkW-EE-NlC"/>
-                <constraint firstAttribute="trailing" secondItem="bsQ-pR-lsV" secondAttribute="trailing" constant="19" id="mjC-Ai-d3n"/>
-                <constraint firstItem="bsQ-pR-lsV" firstAttribute="centerY" secondItem="9Q5-Ie-lLP" secondAttribute="centerY" id="xak-C1-6d4"/>
+                <constraint firstItem="4Z4-y4-BF4" firstAttribute="centerY" secondItem="9Q5-Ie-lLP" secondAttribute="centerY" constant="-9" id="ktd-Hr-NQ4"/>
+                <constraint firstAttribute="trailing" secondItem="ClH-g6-zP3" secondAttribute="trailing" constant="7" id="xSI-Zv-98q"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="FPa-ni-K4o"/>
             <size key="customSize" width="311" height="54"/>
@@ -75,6 +76,7 @@
                 <outlet property="descriptionLabel" destination="XzX-SD-gUp" id="mSa-cu-NHT"/>
                 <outlet property="leftIconImg" destination="4hz-bP-CtP" id="a87-ZU-lTC"/>
                 <outlet property="titleLabel" destination="knR-f6-LNP" id="hcw-ON-oJp"/>
+                <outletCollection property="genresLabels" destination="ClH-g6-zP3" collectionClass="NSMutableArray" id="OgU-ci-nPA"/>
             </connections>
             <point key="canvasLocation" x="138.40579710144928" y="129.91071428571428"/>
         </collectionViewCell>

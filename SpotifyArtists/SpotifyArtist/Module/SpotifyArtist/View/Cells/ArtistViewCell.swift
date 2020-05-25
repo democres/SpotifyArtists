@@ -35,7 +35,8 @@ class ArtistViewCell: UICollectionViewCell {
             }
         }
     }
-
+    @IBOutlet var genresLabels: [UILabel]?
+    
     private(set) var disposeBag = DisposeBag()
     
     
@@ -55,13 +56,15 @@ class ArtistViewCell: UICollectionViewCell {
     }
     
     private func setupWith(item: Artist) {
-        
         self.titleLabel?.text = item.name ?? ""
-        
         self.descriptionLabel?.text = getFollowers(number: item.followers)
-        
         self.setupImages(item: item)
         
+        guard let labels = genresLabels else { return }
+        
+        for (index, label) in labels.enumerated() {
+            label.text = (item.genres?[index] ?? "Others").uppercased()
+        }
     }
     
     func getFollowers(number: Int) -> String {

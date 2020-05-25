@@ -16,6 +16,7 @@ class Artist: Object, Mappable, Decodable {
     @objc dynamic var fullImage: String?
     @objc dynamic var popularity: Int = 0
     @objc dynamic var followers: Int = 0
+    @objc dynamic var genres: [String]?
     @objc dynamic var isFavorite: Bool = false
     @objc dynamic var url: String? {
         return "https://open.spotify.com/artist/\(id ?? "")"
@@ -35,6 +36,7 @@ class Artist: Object, Mappable, Decodable {
         fullImage <- map["images.0.url"]
         popularity <- map["popularity"]
         followers <- map["followers.total"]
+        genres <- map["genres"]
     }
     
 }

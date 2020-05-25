@@ -31,13 +31,16 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
 
         self.collectionView.collectionViewLayout = UICollectionViewFlowLayout()
         adapter.collectionView = collectionView
         adapter.dataSource = self
         
         fetchData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     private func fetchData(){
