@@ -22,7 +22,6 @@ final class SpotifyArtistPresenter: SpotifyArtistPresenterProtocol {
         self.interactor.interactorOutputDelegate = self
     }
     
-    
     func showArtist(index: Int) {
         interactor.getArtists(index: index)
         .observeOn(MainScheduler.instance)
@@ -34,12 +33,15 @@ final class SpotifyArtistPresenter: SpotifyArtistPresenterProtocol {
         .disposed(by: disposeBag)
     }
     
+    func showDetailViewController(artist: Artist){
+        App.router.launchDetailView(artist: artist)
+    }
 }
 
 extension SpotifyArtistPresenter: SpotifyArtistInteractorDelegate{
     func handleInteractorOutput(_ output: HomeInteractorOutput) {
         switch output {
-        case .showArtists(let _):
+        case .showArtists( _):
 //            view.handlePresenterOutput(.showSocialPosts(postArray))
             print("THIS TASK IS DONE BY RxSwift THIS DELEGATE IS LEFT HERE BECAUSE OF THE TECHNICAL TEST PURPOSES TO DISCUSS LATER.")
         }

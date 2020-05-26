@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import Kingfisher
 
 class ArtistViewCell: UICollectionViewCell {
 
@@ -57,37 +56,23 @@ class ArtistViewCell: UICollectionViewCell {
     
     private func setupWith(item: Artist) {
         self.titleLabel?.text = item.name ?? ""
-        self.descriptionLabel?.text = getFollowers(number: item.followers)
-        self.setupImages(item: item)
+        self.descriptionLabel?.text = CommonUtilities.getFollowers(number: item.followers)
+        
+        if let image = leftIconImg {
+            CommonUtilities.setupImage(imageUrl: item.profileImage ?? "", imageView: image, placeholder: "person")
+        }
         
         guard let labels = genresLabels else { return }
-        
+
         for (index, label) in labels.enumerated() {
-            label.text = (item.genres?[index] ?? "Others").uppercased()
+            if let genre = item.genres[safe: index] {
+                label.text = genre.capitalized
+            } else{
+                label.text = "Others"
+            }
         }
     }
-    
-    func getFollowers(number: Int) -> String {
-        let formater = NumberFormatter()
-        formater.groupingSeparator = ","
-        formater.numberStyle = .decimal
-        let formattedNumber = formater.string(from: NSNumber(value: number))
-        
-        return "Followers: \(formattedNumber ?? "")"
-    }
-    
-    private func setupImages(item: Artist){
-        let url = URL(string: item.profileImage ?? "")
-        self.leftIconImg?.kf.setImage(
-        with: url,
-        placeholder: UIImage(named: "person"),
-        options: [
-            .scaleFactor(UIScreen.main.scale),
-            .transition(.fade(1)),
-            .cacheOriginalImage
-        ])
-    }
-    
+
     private func clearData() {
         titleLabel?.text = nil
         descriptionLabel?.text = nil

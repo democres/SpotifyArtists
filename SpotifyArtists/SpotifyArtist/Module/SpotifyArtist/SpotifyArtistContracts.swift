@@ -32,6 +32,7 @@ enum HomeInteractorOutput {
 // MARK: - Presenter
 protocol SpotifyArtistPresenterProtocol: class {
     func showArtist(index: Int)
+    func showDetailViewController(artist: Artist)
 }
 
 enum HomePresenterOutput {

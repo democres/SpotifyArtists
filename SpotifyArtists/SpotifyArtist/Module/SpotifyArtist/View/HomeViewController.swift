@@ -11,6 +11,10 @@ import IGListKit
 import RxSwift
 import RxCocoa
 
+protocol MainSectionControllerDelegate: class {
+    func showDetailViewController(artist: Artist)
+}
+
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: ListCollectionView!
@@ -65,7 +69,9 @@ extension HomeViewController: ListAdapterDataSource {
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         if object is Artist {
-            return MainSectionController()
+            let sectionController = MainSectionController()
+            sectionController.delegate = self
+            return sectionController
         }
         return MainSectionController()
     }
@@ -82,5 +88,12 @@ extension HomeViewController: HomeViewProtocol{
         case .showArtists(let artistArray):
             self.artistArray = artistArray
         }
+    }
+}
+
+extension HomeViewController: MainSectionControllerDelegate {
+    // MARK: - Handle ListSectionOutput
+    func showDetailViewController(artist: Artist) {
+        presenter.showDetailViewController(artist: artist)
     }
 }

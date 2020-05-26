@@ -51,7 +51,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dancehall" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClH-g6-zP3">
-                        <rect key="frame" x="240" y="27.5" width="64" height="17"/>
+                        <rect key="frame" x="237" y="27.5" width="64" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -68,7 +68,7 @@
                 <constraint firstItem="4hz-bP-CtP" firstAttribute="leading" secondItem="9Q5-Ie-lLP" secondAttribute="leading" constant="6" id="TIK-Uw-gZ3"/>
                 <constraint firstItem="knR-f6-LNP" firstAttribute="leading" secondItem="4hz-bP-CtP" secondAttribute="trailing" constant="6" id="UkW-EE-NlC"/>
                 <constraint firstItem="4Z4-y4-BF4" firstAttribute="centerY" secondItem="9Q5-Ie-lLP" secondAttribute="centerY" constant="-9" id="ktd-Hr-NQ4"/>
-                <constraint firstAttribute="trailing" secondItem="ClH-g6-zP3" secondAttribute="trailing" constant="7" id="xSI-Zv-98q"/>
+                <constraint firstAttribute="trailing" secondItem="ClH-g6-zP3" secondAttribute="trailing" constant="10" id="xSI-Zv-98q"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="FPa-ni-K4o"/>
             <size key="customSize" width="311" height="54"/>
@@ -77,6 +77,7 @@
                 <outlet property="leftIconImg" destination="4hz-bP-CtP" id="a87-ZU-lTC"/>
                 <outlet property="titleLabel" destination="knR-f6-LNP" id="hcw-ON-oJp"/>
                 <outletCollection property="genresLabels" destination="ClH-g6-zP3" collectionClass="NSMutableArray" id="OgU-ci-nPA"/>
+                <outletCollection property="genresLabels" destination="4Z4-y4-BF4" collectionClass="NSMutableArray" id="NGG-og-7Fb"/>
             </connections>
             <point key="canvasLocation" x="138.40579710144928" y="129.91071428571428"/>
         </collectionViewCell>

@@ -19,5 +19,13 @@ final class AppRouter {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
-
+    
+    func launchDetailView(artist: Artist){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        viewController.artist = artist
+        if let navigation = window?.rootViewController as? UINavigationController {
+            navigation.pushViewController(viewController, animated: true)
+        }
+    }
 }

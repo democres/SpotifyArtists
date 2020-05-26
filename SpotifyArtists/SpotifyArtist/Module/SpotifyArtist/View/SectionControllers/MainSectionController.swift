@@ -10,7 +10,8 @@ import IGListKit
 
 class MainSectionController: ListSectionController {
     var artist: Artist?
-    
+    var delegate: MainSectionControllerDelegate?
+
     override init() {
         super.init()
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
@@ -41,8 +42,7 @@ extension MainSectionController {
     }
     
     override func didSelectItem(at index: Int) {
-      collectionContext?.performBatch(animated: true, updates: { batchContext in
-        batchContext.reload(self)
-      }, completion: nil)
+        guard let item = artist else { return }
+        self.delegate?.showDetailViewController(artist: item)
     }
 }

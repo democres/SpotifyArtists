@@ -16,7 +16,7 @@ class Artist: Object, Mappable, Decodable {
     @objc dynamic var fullImage: String?
     @objc dynamic var popularity: Int = 0
     @objc dynamic var followers: Int = 0
-    @objc dynamic var genres: [String]?
+    var genres: [String] = [String]()
     @objc dynamic var isFavorite: Bool = false
     @objc dynamic var url: String? {
         return "https://open.spotify.com/artist/\(id ?? "")"
