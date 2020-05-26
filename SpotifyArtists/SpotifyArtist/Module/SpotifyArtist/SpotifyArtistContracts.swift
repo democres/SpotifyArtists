@@ -10,15 +10,17 @@ import Foundation
 import RxSwift
 
 // MARK: - View
-protocol HomeViewProtocol: class {
-    func handlePresenterOutput(_ output: HomePresenterOutput)
+protocol SpotifyViewProtocol: class {
+    func handlePresenterOutput(_ output: SpotifyPresenterOutput)
 }
 
 // MARK: - Interactor
 protocol SpotifyArtistInteractorProtocol: class {
     var interactorOutputDelegate: SpotifyArtistInteractorDelegate? { get set }
-    func getArtists(index: Int) -> PublishSubject<[Artist]>
+    func getArtists() -> PublishSubject<[Artist]>
+    func getAlbums(id: String) -> PublishSubject<[Album]>
     func fetchLocalData() -> [Artist]
+    func fetchLocalAlbums() -> [Album]
 }
 
 protocol SpotifyArtistInteractorDelegate: class {
@@ -31,10 +33,12 @@ enum HomeInteractorOutput {
 
 // MARK: - Presenter
 protocol SpotifyArtistPresenterProtocol: class {
-    func showArtist(index: Int)
+    func showArtists()
     func showDetailViewController(artist: Artist)
+    func showAlbums(id: String)
 }
 
-enum HomePresenterOutput {
+enum SpotifyPresenterOutput {
     case showArtists([Artist])
+    case showAlbums([Album])
 }

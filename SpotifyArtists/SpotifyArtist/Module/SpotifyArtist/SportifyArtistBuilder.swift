@@ -10,12 +10,22 @@ import Foundation
 import UIKit
 
 final class SpotifyArtistBuilder {
-    static func make() -> HomeViewController {
+    static func makeHomeViewController() -> HomeViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let view = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        let interactor = SpotifyArtistHomeInteractor()
+        let interactor = SpotifyArtistInteractor()
         let presenter = SpotifyArtistPresenter(view: view, interactor: interactor)
         view.presenter = presenter
+        return view
+    }
+    
+    static func makeDetailViewController(artist: Artist) -> DetailViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let view = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        let interactor = SpotifyArtistInteractor()
+        let presenter = SpotifyArtistPresenter(view: view, interactor: interactor)
+        view.presenter = presenter
+        view.artist = artist
         return view
     }
 }

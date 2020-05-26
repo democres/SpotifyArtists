@@ -5,6 +5,7 @@
 //  Created by David Figueroa on 25/05/20.
 //  Copyright © 2020 David Figueroa. All rights reserved.
 //
+
 import ObjectMapper
 import RealmSwift
 

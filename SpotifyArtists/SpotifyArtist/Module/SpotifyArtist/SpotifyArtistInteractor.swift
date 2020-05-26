@@ -10,20 +10,20 @@ import Foundation
 import RxSwift
 import ObjectMapper
 
-final class SpotifyArtistHomeInteractor {
+final class SpotifyArtistInteractor {
     
     weak var interactorOutputDelegate: SpotifyArtistInteractorDelegate?
     private(set) var disposeBag = DisposeBag()
     let apiService = APIService.shared
     
     var artistArray = PublishSubject<[Artist]>()
+    var albumArray = PublishSubject<[Album]>()
 }
 
-extension SpotifyArtistHomeInteractor: SpotifyArtistInteractorProtocol {
+extension SpotifyArtistInteractor: SpotifyArtistInteractorProtocol {
     
-    func getArtists(index: Int) -> PublishSubject<[Artist]> {
-        do{
-            try apiService.getArtists()
+    func getArtists() -> PublishSubject<[Artist]> {
+        apiService.getArtists()
             .subscribe { event in
                 switch event {
                     case .success(let data):
@@ -32,10 +32,6 @@ extension SpotifyArtistHomeInteractor: SpotifyArtistInteractorProtocol {
                         print("Error: ", error)
                 }
             }
-        }
-        catch{
-            print("Error while fetching data")
-        }
         return artistArray
     }
     
@@ -51,9 +47,37 @@ extension SpotifyArtistHomeInteractor: SpotifyArtistInteractorProtocol {
         return fetchLocalData()
     }
     
+    func getAlbums(id: String) -> PublishSubject<[Album]> {
+        apiService.getAlbums(id: id)
+            .subscribe { event in
+                switch event {
+                    case .success(let data):
+                        self.albumArray.on(.next(self.mapAlbums(data: data)))
+                    case .error(let error):
+                        print("Error: ", error)
+                }
+            }
+        return albumArray
+    }
+    
+    private func mapAlbums(data: Data) -> [Album] {
+        let dataAux = try? JSONSerialization.jsonObject(with: data, options: [])
+        if let json = dataAux as? [String: Any] {
+            if let artists = json["items"] as? [[String: Any]] {
+                if let albumArray = Mapper<Album>().mapArray(JSONObject: artists){
+                    return albumArray
+                }
+            }
+        }
+        return fetchLocalAlbums()
+    }
     
     func fetchLocalData() -> [Artist] {
         return [Artist]()
+    }
+    
+    func fetchLocalAlbums() -> [Album] {
+        return [Album]()
     }
     
 }

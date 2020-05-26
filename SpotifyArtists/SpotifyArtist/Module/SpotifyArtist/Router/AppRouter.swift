@@ -14,16 +14,14 @@ final class AppRouter {
     var window: UIWindow?
     
     func launchHomeFeed(){
-        let viewController = SpotifyArtistBuilder.make()
+        let viewController = SpotifyArtistBuilder.makeHomeViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
     
     func launchDetailView(artist: Artist){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        viewController.artist = artist
+        let viewController = SpotifyArtistBuilder.makeDetailViewController(artist: artist)
         if let navigation = window?.rootViewController as? UINavigationController {
             navigation.pushViewController(viewController, animated: true)
         }

@@ -24,7 +24,6 @@ class HomeViewController: UIViewController {
     }()
     
     private let disposeBag = DisposeBag()
-    private var artistsObservable: Observable<[Artist]>!
     
     var artistArray: [Artist]?{
         didSet{
@@ -52,7 +51,7 @@ class HomeViewController: UIViewController {
         DispatchQueue.global(qos: .userInteractive).async {
             while true {
                 if App.bearerToken != "" {
-                    self.presenter.showArtist(index: 1)
+                    self.presenter.showArtists()
                     self.removeSpinner()
                     break
                 }
@@ -81,12 +80,14 @@ extension HomeViewController: ListAdapterDataSource {
     }
 }
 
-extension HomeViewController: HomeViewProtocol{
+extension HomeViewController: SpotifyViewProtocol{
     // MARK: - Handle Presenter Output
-    func handlePresenterOutput(_ output: HomePresenterOutput) {
+    func handlePresenterOutput(_ output: SpotifyPresenterOutput) {
         switch output {
         case .showArtists(let artistArray):
             self.artistArray = artistArray
+        case .showAlbums(_):
+            break
         }
     }
 }

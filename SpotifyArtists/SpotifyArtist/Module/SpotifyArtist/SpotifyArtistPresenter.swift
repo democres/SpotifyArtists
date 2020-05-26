@@ -11,19 +11,19 @@ import RxSwift
 
 final class SpotifyArtistPresenter: SpotifyArtistPresenterProtocol {
     
-    private let view: HomeViewProtocol
+    private let view: SpotifyViewProtocol
     private let interactor: SpotifyArtistInteractorProtocol
     
     private let disposeBag = DisposeBag()
     
-    init(view: HomeViewProtocol, interactor: SpotifyArtistInteractorProtocol) {
+    init(view: SpotifyViewProtocol, interactor: SpotifyArtistInteractorProtocol) {
         self.view = view
         self.interactor = interactor
         self.interactor.interactorOutputDelegate = self
     }
     
-    func showArtist(index: Int) {
-        interactor.getArtists(index: index)
+    func showArtists() {
+        interactor.getArtists()
         .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] artistArray in
                 self?.view.handlePresenterOutput(.showArtists(artistArray))
@@ -35,6 +35,17 @@ final class SpotifyArtistPresenter: SpotifyArtistPresenterProtocol {
     
     func showDetailViewController(artist: Artist){
         App.router.launchDetailView(artist: artist)
+    }
+    
+    func showAlbums(id: String) {
+        interactor.getAlbums(id: id)
+        .observeOn(MainScheduler.instance)
+        .subscribe(onNext: { [weak self] albumArray in
+                self?.view.handlePresenterOutput(.showAlbums(albumArray))
+        }, onError: { [weak self] (error) in
+                self?.view.handlePresenterOutput(.showAlbums(self?.interactor.fetchLocalAlbums() ?? [Album]()))
+        })
+        .disposed(by: disposeBag)
     }
 }
 
