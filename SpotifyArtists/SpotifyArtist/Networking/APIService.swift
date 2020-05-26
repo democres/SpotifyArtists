@@ -37,7 +37,7 @@ class APIService {
     }
     
     func getArtists() -> Single<Data> {
-        var request = URLRequest(url:URL(string:"https://api.spotify.com/v1/artists?ids=4V8Sr092TqfHkfAA5fXXqG%2C6eUKZXaKkcviH0Ku9w2n3V%2C4VMYDCV2IEDYJArk749S6m%2C7Ln80lUS6He07XvHI8qqHH%2C12vb80Km0Ew53ABfJOepVz%2C7BFnoFhJjLWcsqmN3Hizqg%2C66NweiA3nU84k1S3SZdTSG%2C0EmeFodog0BfCgMzAIvKQp%2C0UWZUmn7sybxMCqrw9tGa7%2C6Ud6RjvNXVe39mKiGUb7zE%2C3IUAZiICL3J7GlHYPgT414%2C1f6CQnTy4FKDgLGzp6G2Wd%2C6n21XaDAuqpceTXBiypR9W%2C3OcvS8PzSGYMBvLdzY6g3e%2C0gudLEFCyMFIBCt1EQaMh7%2C3vjtBZfcllf1dc7lfyKKME%2C1zng9JZpblpk48IPceRWs8")!)
+        var request = URLRequest(url:URL(string:"https://api.spotify.com/v1/artists?ids=4V8Sr092TqfHkfAA5fXXqG%2C6eUKZXaKkcviH0Ku9w2n3V%2C4VMYDCV2IEDYJArk749S6m%2C7Ln80lUS6He07XvHI8qqHH%2C12vb80Km0Ew53ABfJOepVz%2C7BFnoFhJjLWcsqmN3Hizqg%2C66NweiA3nU84k1S3SZdTSG%2C0EmeFodog0BfCgMzAIvKQp%2C0UWZUmn7sybxMCqrw9tGa7%2C6Ud6RjvNXVe39mKiGUb7zE%2C3IUAZiICL3J7GlHYPgT414%2C1f6CQnTy4FKDgLGzp6G2Wd%2C6n21XaDAuqpceTXBiypR9W%2C3OcvS8PzSGYMBvLdzY6g3e%2C0gudLEFCyMFIBCt1EQaMh7%2C3vjtBZfcllf1dc7lfyKKME%2C1zng9JZpblpk48IPceRWs8%2C1Yox196W7bzVNZI7RBaPnf%2C2R21vXR83lH98kGeO99Y66%2C790FomKkXshlbRYZFtlgla%2C790FomKkXshlbRYZFtlgla%2C1vyhD5VmyZ7KMfW5gqLgo5%2C2Z0C8UvMoiixS0cRV8Urtr")!)
         
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField:

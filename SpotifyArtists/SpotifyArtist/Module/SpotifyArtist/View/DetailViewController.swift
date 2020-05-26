@@ -53,7 +53,7 @@ class DetailViewController: UIViewController {
     private func animateTopAlbums(){
         topAlbumsLabel.isHidden = false
         self.topAlbumsLeadingConstraint.constant = 15
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
     }
@@ -99,7 +99,8 @@ class DetailViewController: UIViewController {
                 label.text = name
             }
         }
-            
+         
+        pulsate()
     }
 
     private func setupView(){
@@ -109,6 +110,19 @@ class DetailViewController: UIViewController {
         if let item = artist{
             CommonUtilities.setupImage(imageUrl: item.fullImage ?? "", imageView: artistImage, placeholder: "square.and.arrow.down")
         }
+    }
+    
+    private func pulsate(){
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.duration = 0.6
+        pulse.fromValue = 0.95
+        pulse.toValue = 1.0
+        pulse.autoreverses = true
+        pulse.repeatCount = 2
+        pulse.initialVelocity = 0.5
+        pulse.damping = 1.0
+        
+        artistImage.layer.add(pulse, forKey: "pulse")
     }
 }
 
