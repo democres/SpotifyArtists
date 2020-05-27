@@ -48,15 +48,26 @@ class HomeViewController: UIViewController {
     
     private func fetchData(){
         self.showSpinner(onView: self.view)
-        DispatchQueue.global(qos: .userInteractive).async {
-            while true {
-                if App.bearerToken != "" {
-                    self.presenter.showArtists()
-                    self.removeSpinner()
-                    break
-                }
+
+        var counter = 0
+        Timer.scheduledTimer(withTimeInterval: 1.0,repeats: true) {
+            timerInstance in
+            if App.bearerToken != "" {
+                self.presenter.showArtists()
+                self.removeSpinner()
+                timerInstance.invalidate()
+            }
+            counter += 1
+            if counter == 3 {
+                let alert = UIAlertController(title: "No Connection", message: "There is a problem with your connection, you are using the offline cache now", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                self.presenter.showArtists()
+                self.removeSpinner()
+                timerInstance.invalidate()
             }
         }
+        
     }
     
 }
