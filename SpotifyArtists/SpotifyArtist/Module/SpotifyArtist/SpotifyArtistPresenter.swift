@@ -52,6 +52,10 @@ final class SpotifyArtistPresenter: SpotifyArtistPresenterProtocol {
         interactor.setAsFavorite(artist: artist)
     }
     
+    func getFavorites() -> [Artist] {
+        return interactor.getFavorites()
+    }
+    
     func isFavorite(artist: Artist) -> Bool {
         let artists = interactor.fetchLocalDataArtists()
         let isFavorite = artists.first(where: { $0.id == artist.id })?.isFavorite

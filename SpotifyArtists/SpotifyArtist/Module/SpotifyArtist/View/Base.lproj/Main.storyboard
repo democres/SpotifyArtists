@@ -97,12 +97,34 @@
                                     <constraint firstAttribute="height" constant="49" id="UmA-vi-0zv"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w30-hs-x70">
+                                <rect key="frame" x="218" y="608" width="59" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="59" id="hPq-xp-qJ9"/>
+                                    <constraint firstAttribute="height" constant="47" id="td3-iu-6I4"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="favoritesTap:" destination="lOq-F9-XUG" eventType="touchUpInside" id="lEA-Mi-sbg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zH-CM-MhK">
+                                <rect key="frame" x="98" y="605" width="59" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="DqQ-Sd-eGa"/>
+                                    <constraint firstAttribute="width" constant="59" id="xO9-cz-pd0"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="allArtistsTap:" destination="lOq-F9-XUG" eventType="touchUpInside" id="hVK-8W-4OS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="jvs-52-iU0" firstAttribute="bottom" secondItem="Lnc-XO-7JG" secondAttribute="bottom" constant="22" id="12e-ri-aH2"/>
                             <constraint firstItem="Qsu-be-U6m" firstAttribute="leading" secondItem="jvs-52-iU0" secondAttribute="leading" id="22b-Bm-WGZ"/>
                             <constraint firstItem="yJd-pb-cC5" firstAttribute="leading" secondItem="jvs-52-iU0" secondAttribute="leading" id="3IP-mH-NcY"/>
+                            <constraint firstItem="jvs-52-iU0" firstAttribute="bottom" secondItem="3zH-CM-MhK" secondAttribute="bottom" constant="15" id="49J-C9-1In"/>
+                            <constraint firstItem="w30-hs-x70" firstAttribute="centerX" secondItem="Lnc-XO-7JG" secondAttribute="centerX" id="8Js-bO-NfD"/>
                             <constraint firstItem="CxS-uP-AeU" firstAttribute="centerX" secondItem="Lnc-XO-7JG" secondAttribute="centerX" id="ApQ-8h-AFQ"/>
                             <constraint firstItem="fQc-bJ-NYc" firstAttribute="centerX" secondItem="412-1O-ZXx" secondAttribute="centerX" constant="-5" id="Del-1l-zDl"/>
                             <constraint firstItem="5HG-N7-gAk" firstAttribute="centerX" secondItem="xLO-1B-SVG" secondAttribute="centerX" id="EB3-IR-zZF"/>
@@ -117,9 +139,11 @@
                             <constraint firstItem="yJd-pb-cC5" firstAttribute="top" secondItem="h91-Pw-bNc" secondAttribute="bottom" id="T2I-O4-Yni"/>
                             <constraint firstItem="jvs-52-iU0" firstAttribute="trailing" secondItem="Qsu-be-U6m" secondAttribute="trailing" id="ap2-qK-r7V"/>
                             <constraint firstItem="Qsu-be-U6m" firstAttribute="top" secondItem="8OD-al-BHh" secondAttribute="bottom" constant="17" id="auR-n7-TqQ"/>
+                            <constraint firstItem="3zH-CM-MhK" firstAttribute="centerX" secondItem="xLO-1B-SVG" secondAttribute="centerX" id="eZU-u8-X98"/>
                             <constraint firstItem="jvs-52-iU0" firstAttribute="bottom" secondItem="xLO-1B-SVG" secondAttribute="bottom" constant="21" id="fu1-uF-auA"/>
                             <constraint firstItem="yJd-pb-cC5" firstAttribute="trailing" secondItem="jvs-52-iU0" secondAttribute="trailing" id="i48-og-ywd"/>
                             <constraint firstItem="h91-Pw-bNc" firstAttribute="top" secondItem="jvs-52-iU0" secondAttribute="top" constant="146" id="j8x-48-tRk"/>
+                            <constraint firstItem="jvs-52-iU0" firstAttribute="bottom" secondItem="w30-hs-x70" secondAttribute="bottom" constant="12" id="ltN-MQ-OIu"/>
                             <constraint firstItem="h91-Pw-bNc" firstAttribute="leading" secondItem="jvs-52-iU0" secondAttribute="leading" id="mKz-ul-Wwq"/>
                             <constraint firstItem="fQc-bJ-NYc" firstAttribute="top" secondItem="jvs-52-iU0" secondAttribute="top" constant="24" id="nqx-As-cha"/>
                             <constraint firstItem="5HG-N7-gAk" firstAttribute="top" secondItem="xLO-1B-SVG" secondAttribute="bottom" constant="-8" id="uuq-nw-eaA"/>
@@ -130,7 +154,11 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="allArtistsIcon" destination="xLO-1B-SVG" id="ktt-Dz-awd"/>
+                        <outlet property="allArtistsLabel" destination="5HG-N7-gAk" id="B5M-rZ-YbT"/>
                         <outlet property="collectionView" destination="h91-Pw-bNc" id="DZY-Iq-se3"/>
+                        <outlet property="favoritesButtonImg" destination="Lnc-XO-7JG" id="6hV-EZ-4OO"/>
+                        <outlet property="favoritesLabel" destination="CxS-uP-AeU" id="B67-3b-PzE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKK-FR-Ycd" sceneMemberID="firstResponder"/>

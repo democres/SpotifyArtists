@@ -23,6 +23,10 @@ final class SpotifyArtistInteractor {
 
 extension SpotifyArtistInteractor: SpotifyArtistInteractorProtocol {
     
+    func getFavorites() -> [Artist] {
+        return fetchLocalDataArtists().filter{ $0.isFavorite }
+    }
+    
     func setAsFavorite(artist: Artist) {
         do {
             let realm = try Realm()

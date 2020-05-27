@@ -19,6 +19,11 @@ class HomeViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: ListCollectionView!
 
+    @IBOutlet weak var favoritesButtonImg: UIImageView!
+    @IBOutlet weak var favoritesLabel: UILabel!
+    @IBOutlet weak var allArtistsIcon: UIImageView!
+    @IBOutlet weak var allArtistsLabel: UILabel!
+    
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
     }()
@@ -30,6 +35,7 @@ class HomeViewController: UIViewController {
             self.adapter.performUpdates(animated: true)
         }
     }
+    var showFavorites = false
     var presenter: SpotifyArtistPresenterProtocol!
     
     override func viewDidLoad() {
@@ -70,10 +76,32 @@ class HomeViewController: UIViewController {
         
     }
     
+    // MARK: - IBActions
+    
+    @IBAction func favoritesTap(_ sender: Any) {
+        showFavorites = true
+        self.adapter.performUpdates(animated: true)
+        favoritesButtonImg.tintColor = .black
+        favoritesLabel.textColor = .black
+        allArtistsIcon.tintColor = .lightGray
+        allArtistsLabel.textColor = .lightGray
+    }
+    
+    @IBAction func allArtistsTap(_ sender: Any) {
+        showFavorites = false
+        self.adapter.performUpdates(animated: true)
+        favoritesButtonImg.tintColor = .lightGray
+        favoritesLabel.textColor = .lightGray
+        allArtistsIcon.tintColor = .black
+        allArtistsLabel.textColor = .black
+    }
 }
 
 extension HomeViewController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
+        if showFavorites {
+            return presenter.getFavorites()
+        }
         return self.artistArray ?? []
     }
     

@@ -23,6 +23,7 @@ protocol SpotifyArtistInteractorProtocol: class {
     func fetchLocalAlbums() -> [Album]
     func setAsFavorite(artist: Artist)
     func storeData(artistArray: [Artist])
+    func getFavorites() -> [Artist]
 }
 
 protocol SpotifyArtistInteractorDelegate: class {
@@ -38,6 +39,7 @@ protocol SpotifyArtistPresenterProtocol: class {
     func showArtists()
     func showDetailViewController(artist: Artist)
     func showAlbums(id: String)
+    func getFavorites() -> [Artist]
     func setAsFavorite(artist: Artist)
     func isFavorite(artist: Artist) -> Bool
 }
