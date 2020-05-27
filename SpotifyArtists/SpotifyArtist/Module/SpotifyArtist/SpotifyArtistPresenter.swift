@@ -28,7 +28,7 @@ final class SpotifyArtistPresenter: SpotifyArtistPresenterProtocol {
             .subscribe(onNext: { [weak self] artistArray in
                 self?.view.handlePresenterOutput(.showArtists(artistArray))
         }, onError: { [weak self] (error) in
-            self?.view.handlePresenterOutput(.showArtists(self?.interactor.fetchLocalData() ?? [Artist]()))
+            self?.view.handlePresenterOutput(.showArtists(self?.interactor.fetchLocalDataArtists() ?? [Artist]()))
         })
         .disposed(by: disposeBag)
     }
@@ -46,6 +46,16 @@ final class SpotifyArtistPresenter: SpotifyArtistPresenterProtocol {
                 self?.view.handlePresenterOutput(.showAlbums(self?.interactor.fetchLocalAlbums() ?? [Album]()))
         })
         .disposed(by: disposeBag)
+    }
+    
+    func setAsFavorite(artist: Artist) {
+        interactor.setAsFavorite(artist: artist)
+    }
+    
+    func isFavorite(artist: Artist) -> Bool {
+        let artists = interactor.fetchLocalDataArtists()
+        let isFavorite = artists.first(where: { $0.id == artist.id })?.isFavorite
+        return isFavorite ?? false
     }
 }
 

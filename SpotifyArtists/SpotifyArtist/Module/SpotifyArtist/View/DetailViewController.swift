@@ -12,13 +12,13 @@ import RxSwift
 import RxCocoa
 
 class DetailViewController: UIViewController {
-    @IBOutlet weak var artistImage: UIImageView!
-    @IBOutlet weak var artistName: UILabel!
-    @IBOutlet weak var artistFollowers: UILabel!
-    @IBOutlet weak var popularity: UILabel!
-    @IBOutlet var albumImages: [UIImageView]?
-    @IBOutlet weak var topAlbumsLabel: UILabel!
-    @IBOutlet weak var topAlbumsLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var artistImage: UIImageView!
+    @IBOutlet private weak var artistName: UILabel!
+    @IBOutlet private weak var artistFollowers: UILabel!
+    @IBOutlet private weak var popularity: UILabel!
+    @IBOutlet private var albumImages: [UIImageView]?
+    @IBOutlet private weak var topAlbumsLabel: UILabel!
+    @IBOutlet private weak var topAlbumsLeadingConstraint: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
     private var artistsObservable: Observable<[Artist]>!
@@ -26,6 +26,16 @@ class DetailViewController: UIViewController {
     @IBOutlet var albumTitleLabels: [UILabel]?
     @IBOutlet var albumDateLabels: [UILabel]?
     
+    @IBOutlet private weak var addToFavorites: UIButton? {
+        didSet {
+            addToFavorites?.then {
+                $0.clipsToBounds = true
+                $0.layer.cornerRadius = 6
+                let image = UIImage(named: "SectionSeparator") as UIImage?
+                $0.setBackgroundImage(image, for: .normal)
+            }
+        }
+    }
     
     var artist: Artist?
     var albums: [Album]?
@@ -34,9 +44,9 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
         
         fetchData()
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +120,15 @@ class DetailViewController: UIViewController {
         if let item = artist{
             CommonUtilities.setupImage(imageUrl: item.fullImage ?? "", imageView: artistImage, placeholder: "square.and.arrow.down")
         }
+        
+        guard let artist = self.artist else { return }
+        if presenter.isFavorite(artist: artist) {
+            addToFavorites?.setTitle("Remove", for: .normal)
+            addToFavorites?.sizeToFit()
+        } else {
+            addToFavorites?.setTitle("Add to Favorites", for: .normal)
+            addToFavorites?.sizeToFit()
+        }
     }
     
     private func pulsate(){
@@ -124,8 +143,14 @@ class DetailViewController: UIViewController {
         
         artistImage.layer.add(pulse, forKey: "pulse")
     }
+    
+    // MARK: - IBActions
+    @IBAction func setFavorite(_ sender: Any) {
+        guard let artist = self.artist else { return }
+        presenter.setAsFavorite(artist: artist)
+        setupView()
+    }
 }
-
 
 extension DetailViewController: SpotifyViewProtocol{
     // MARK: - Handle Presenter Output

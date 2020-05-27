@@ -17,7 +17,7 @@ protocol MainSectionControllerDelegate: class {
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: ListCollectionView!
+    @IBOutlet private weak var collectionView: ListCollectionView!
 
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)

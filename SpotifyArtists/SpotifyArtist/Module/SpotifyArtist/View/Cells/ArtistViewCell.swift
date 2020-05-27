@@ -34,10 +34,9 @@ class ArtistViewCell: UICollectionViewCell {
             }
         }
     }
-    @IBOutlet var genresLabels: [UILabel]?
+    @IBOutlet private var genresLabels: [UILabel]?
     
     private(set) var disposeBag = DisposeBag()
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

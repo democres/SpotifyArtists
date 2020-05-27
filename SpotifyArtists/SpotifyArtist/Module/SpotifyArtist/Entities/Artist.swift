@@ -23,7 +23,9 @@ class Artist: Object, Mappable, Decodable {
         return "https://open.spotify.com/artist/\(id ?? "")"
     }
     
-    
+    override static func primaryKey() -> String? {
+         return "id"
+    }
     
     //MARK: - Mappable
     required convenience init?(map: Map) {

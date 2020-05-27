@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import ObjectMapper
+import RealmSwift
 
 final class SpotifyArtistInteractor {
     
@@ -22,14 +23,28 @@ final class SpotifyArtistInteractor {
 
 extension SpotifyArtistInteractor: SpotifyArtistInteractorProtocol {
     
+    func setAsFavorite(artist: Artist) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                artist.isFavorite = !artist.isFavorite
+                realm.add(artist, update: .modified)
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
     func getArtists() -> PublishSubject<[Artist]> {
         apiService.getArtists()
             .subscribe { event in
                 switch event {
                     case .success(let data):
-                        self.artistArray.on(.next(self.mapArtists(data: data)))
-                    case .error(let error):
-                        print("Error: ", error)
+                        let artists = self.mapArtists(data: data)
+                        self.storeData(artistArray: artists)
+                        self.artistArray.on(.next(artists))
+                    case .error(_):
+                        self.artistArray.on(.next(self.fetchLocalDataArtists()))
                 }
             }
         return artistArray
@@ -44,7 +59,7 @@ extension SpotifyArtistInteractor: SpotifyArtistInteractorProtocol {
                 }
             }
         }
-        return fetchLocalData()
+        return fetchLocalDataArtists()
     }
     
     func getAlbums(id: String) -> PublishSubject<[Album]> {
@@ -72,12 +87,40 @@ extension SpotifyArtistInteractor: SpotifyArtistInteractorProtocol {
         return fetchLocalAlbums()
     }
     
-    func fetchLocalData() -> [Artist] {
-        return [Artist]()
+    func fetchLocalDataArtists() -> [Artist] {
+        var artistArray = [Artist]()
+        do {
+            let realm = try Realm()
+            realm.objects(Artist.self).forEach { artist in
+                artistArray.append(artist)
+            }
+        } catch let error {
+            print(error)
+        }
+        return artistArray
     }
     
     func fetchLocalAlbums() -> [Album] {
         return [Album]()
     }
     
+    func storeData(artistArray: [Artist]){
+        DispatchQueue.main.async {
+            do {
+                let realm = try Realm()
+                let cacheArtists = self.fetchLocalDataArtists()
+                try realm.write {
+                    artistArray.forEach { artist in
+                        if !cacheArtists.contains(where: { $0.id == artist.id }) {
+                             realm.add(artist)
+                        }
+                    }
+                }
+            } catch let error {
+                print(error)
+            }
+        }             
+
+     }
+     
 }

@@ -277,10 +277,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="46y-9r-weH">
+                                <rect key="frame" x="259" y="241" width="106" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="rQe-J9-EJp"/>
+                                    <constraint firstAttribute="width" constant="106" id="w6Q-K0-wI6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="tintColor" red="0.048255987469999997" green="0.109116666" blue="0.13725924489999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Add to Favorites" image="heart.fill" catalog="system" backgroundImage="SectionSeparator">
+                                    <color key="titleColor" red="0.048255987469999997" green="0.109116666" blue="0.13725924489999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="setFavorite:" destination="0a6-X5-dJF" eventType="touchUpInside" id="Rv7-WH-wbQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="odS-Nk-YX1" firstAttribute="top" secondItem="tBO-d1-L6b" secondAttribute="bottom" constant="32" id="2xT-p2-Tpz"/>
+                            <constraint firstItem="46y-9r-weH" firstAttribute="centerY" secondItem="9gd-Uq-xYB" secondAttribute="centerY" id="8xB-TB-qXO"/>
                             <constraint firstItem="VDY-fY-2IE" firstAttribute="top" secondItem="2VN-Yi-ohp" secondAttribute="bottom" id="9DR-wt-r3B"/>
                             <constraint firstItem="E29-DK-XTE" firstAttribute="leading" secondItem="odS-Nk-YX1" secondAttribute="leading" id="B42-2J-yHv"/>
                             <constraint firstItem="mju-ss-e4q" firstAttribute="leading" secondItem="fbV-IY-8gd" secondAttribute="trailing" constant="7" id="B67-tW-MzC"/>
@@ -301,6 +317,7 @@
                             <constraint firstItem="pqd-CJ-EQ2" firstAttribute="trailing" secondItem="Wbe-fJ-5aB" secondAttribute="trailing" id="c43-XP-KxT"/>
                             <constraint firstItem="E29-DK-XTE" firstAttribute="top" secondItem="odS-Nk-YX1" secondAttribute="bottom" constant="13" id="cGZ-vq-Wzy"/>
                             <constraint firstItem="tBO-d1-L6b" firstAttribute="leading" secondItem="Wbe-fJ-5aB" secondAttribute="leading" constant="16" id="d1E-0v-RIk"/>
+                            <constraint firstItem="Wbe-fJ-5aB" firstAttribute="trailing" secondItem="46y-9r-weH" secondAttribute="trailing" constant="10" id="eEp-ZI-svf"/>
                             <constraint firstItem="Fjf-Yu-EYq" firstAttribute="leading" secondItem="odS-Nk-YX1" secondAttribute="leading" id="eyr-72-N5c"/>
                             <constraint firstItem="pqd-CJ-EQ2" firstAttribute="top" secondItem="tBO-d1-L6b" secondAttribute="bottom" constant="14" id="h2v-xo-qQd"/>
                             <constraint firstItem="Gs0-oq-ONZ" firstAttribute="leading" secondItem="E29-DK-XTE" secondAttribute="trailing" constant="8" id="hUF-J0-cgb"/>
@@ -323,6 +340,7 @@
                         <viewLayoutGuide key="safeArea" id="Wbe-fJ-5aB"/>
                     </view>
                     <connections>
+                        <outlet property="addToFavorites" destination="46y-9r-weH" id="kSl-2f-9Sp"/>
                         <outlet property="artistFollowers" destination="9gd-Uq-xYB" id="ucx-Eo-zhz"/>
                         <outlet property="artistImage" destination="2VN-Yi-ohp" id="6ql-XJ-fYK"/>
                         <outlet property="artistName" destination="Fz7-RH-BYb" id="iep-dq-pTs"/>
